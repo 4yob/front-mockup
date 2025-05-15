@@ -38,7 +38,8 @@ export default function Alunos() {
                 );
                 setSessionStorage("alunosData", alunos);
                 setData({ alunos, loading: false, current: 1, pageSize: 5 });
-            } catch {
+            } catch (error) {
+                console.error("Error fetching alunos:", error);
                 toast.error("Erro ao carregar alunos");
                 setData((d) => ({ ...d, loading: false }));
             }
@@ -94,7 +95,7 @@ export default function Alunos() {
             {data.loading ? (
                 <Image
                     src="/img/loader.gif"
-                    width={300}
+                    width={200}
                     height={200}
                     alt="Loading"
                 />
@@ -109,7 +110,7 @@ export default function Alunos() {
                             cover={
                                 <Image
                                     alt={aluno.name_estudante}
-                                    src={aluno.photo ? aluno.photo : "/images/220.svg"}
+                                    src={aluno.photo ? aluno.photo : "/img/220.svg"}
                                     width={220}
                                     height={220}
                                 />
